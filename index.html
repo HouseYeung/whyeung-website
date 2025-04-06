@@ -1,42 +1,65 @@
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-white text-gray-800 p-6">
-      <div className="max-w-3xl mx-auto space-y-8">
-        <header className="text-center">
-          <h1 className="text-4xl font-bold">Whyeung Digital LLC</h1>
-          <p className="mt-2 text-lg text-gray-600">
-            Building useful digital tools and publishing premium content online.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whyeung Digital LLC</title>
+  <meta name="description" content="Whyeung Digital LLC - Building tools and experiences for the modern internet.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-white to-slate-50 text-gray-800 font-sans">
+
+  <main class="min-h-screen p-6">
+    <div class="max-w-4xl mx-auto space-y-16">
+
+      <header class="text-center py-12">
+        <h1 class="text-5xl font-extrabold tracking-tight text-gray-900">Whyeung Digital LLC</h1>
+        <p class="mt-4 text-xl text-gray-600">Building tools and experiences for the modern internet.</p>
+      </header>
+
+      <section class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-semibold">About Us</h2>
+          <p class="mt-4 text-gray-700 leading-relaxed">
+            Whyeung Digital LLC, founded in 2025 in Wyoming, is a remote-first digital company focused on developing intuitive software and publishing useful content. We empower creators and professionals through minimal, powerful web tools.
           </p>
-        </header>
+        </div>
+        <div>
+          <img
+            src="https://source.unsplash.com/featured/?technology,code"
+            alt="Digital illustration"
+            class="rounded-2xl shadow-md w-full h-64 object-cover"
+          />
+        </div>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold">About Us</h2>
-          <p className="mt-2 text-gray-700">
-            Founded in 2025 and registered in Wyoming, Whyeung Digital LLC is an independent digital company creating software products, email-based subscriptions, and lightweight SaaS tools for online creators and professionals.
-          </p>
-        </section>
+      <section class="bg-white p-6 rounded-2xl shadow-md">
+        <h2 class="text-3xl font-semibold mb-4 text-center">What We Do</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <li>Develop micro SaaS and browser-based productivity tools</li>
+          <li>Publish expert-level newsletters and interactive content</li>
+          <li>Build lightweight AI + automation for solopreneurs</li>
+        </ul>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold">What We Do</h2>
-          <ul className="mt-2 list-disc list-inside text-gray-700 space-y-1">
-            <li>Develop micro SaaS tools and digital utilities</li>
-            <li>Run a content platform with premium email newsletters</li>
-            <li>Support creators with automation and monetization tools</li>
-          </ul>
-        </section>
+      <section class="text-center space-y-2">
+        <h2 class="text-3xl font-semibold">Contact</h2>
+        <p class="text-gray-700 text-lg">
+          <a href="mailto:contact@whyeung.eu.org" class="text-blue-600 hover:underline">
+            contact@whyeung.eu.org
+          </a>
+        </p>
+        <p class="text-gray-500 text-sm">
+          Registered Office: 30 N Gould St Ste N, Sheridan, WY 82801, USA
+        </p>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold">Contact</h2>
-          <p className="mt-2 text-gray-700">
-            Email: contact@whyeung.eu.org<br />
-            Registered Office: 30 N Gould St Ste N, Sheridan, WY 82801, USA
-          </p>
-        </section>
+      <footer class="pt-10 border-t text-sm text-gray-400 text-center">
+        &copy; 2025 Whyeung Digital LLC. All rights reserved.
+      </footer>
 
-        <footer className="pt-8 border-t text-sm text-gray-500 text-center">
-          &copy; 2025 Whyeung Digital LLC. All rights reserved.
-        </footer>
-      </div>
-    </main>
-  );
-}
+    </div>
+  </main>
+
+</body>
+</html>
