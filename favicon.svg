@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>Whyeung Digital LLC</title>
+  <defs>
+    <linearGradient id="g" x1="16" y1="12" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21433a" />
+      <stop offset="1" stop-color="#8b5e3c" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="32" fill="url(#g)" />
+  <path
+    d="M26 30h13l14 47 11-31h10l11 31 14-47h13l-22 68H79L69 67 59 98H48L26 30Z"
+    fill="#fff9f1"
+  />
+</svg>

@@ -1,0 +1,9 @@
+{
+  "name": "whyeung-site",
+  "main": "worker.js",
+  "compatibility_date": "2026-04-08",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Whyeung Digital LLC",
+  "short_name": "Whyeung",
+  "description": "Whyeung Digital LLC builds browser-based language tools including KaiwaKit.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5efe2",
+  "theme_color": "#f5efe2",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

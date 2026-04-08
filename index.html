@@ -1,61 +1,376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whyeung Digital LLC</title>
-  <meta name="description" content="Whyeung Digital LLC - Building tools and experiences for the modern internet.">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gradient-to-b from-white to-slate-50 text-gray-800 font-sans">
-
-  <main class="min-h-screen p-6">
-    <div class="max-w-4xl mx-auto space-y-16">
-
-      <header class="text-center py-12">
-        <h1 class="text-5xl font-extrabold tracking-tight text-gray-900">Whyeung Digital LLC</h1>
-        <p class="mt-4 text-xl text-gray-600">Building tools and experiences for the modern internet.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whyeung Digital LLC | KaiwaKit Language Tools</title>
+    <meta
+      name="description"
+      content="Whyeung Digital LLC builds browser-based language tools for real-world conversations. KaiwaKit is our translation product focused on helping people communicate confidently in Japan."
+    />
+    <meta
+      name="keywords"
+      content="Whyeung Digital LLC,KaiwaKit,translation app,conversation translation,Japan language tools,browser translation"
+    />
+    <meta name="theme-color" content="#f5efe2" />
+    <meta property="og:title" content="Whyeung Digital LLC | KaiwaKit Language Tools" />
+    <meta
+      property="og:description"
+      content="Language tools for real-world conversations. KaiwaKit helps people understand speech, translate it quickly, and respond with confidence."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://whyeung.eu.org/" />
+    <meta property="og:image" content="https://whyeung.eu.org/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://whyeung.eu.org/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Whyeung Digital LLC",
+        "url": "https://whyeung.eu.org/",
+        "email": "contact@whyeung.eu.org",
+        "foundingDate": "2025",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "30 N Gould St Ste N",
+          "addressLocality": "Sheridan",
+          "addressRegion": "WY",
+          "postalCode": "82801",
+          "addressCountry": "US"
+        },
+        "description": "Whyeung Digital LLC is a remote-first software company building browser-based language and productivity tools."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true">W</span>
+          <span>
+            <strong>Whyeung Digital LLC</strong>
+            <small>KaiwaKit Language Tools</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="#company">Company</a>
+          <a href="#product">Product</a>
+          <a href="#use-cases">Use Cases</a>
+          <a href="#trust">Trust</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
       </header>
 
-      <section class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-3xl font-semibold">About Us</h2>
-          <p class="mt-4 text-gray-700 leading-relaxed">
-            Whyeung Digital LLC, founded in 2025 in Wyoming, is a remote-first digital company focused on developing intuitive software and publishing useful content. We empower creators and professionals through minimal, powerful web tools.
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Whyeung Digital LLC</p>
+            <h1>Language tools for real-world conversations.</h1>
+            <p class="hero-text">
+              We build practical web software for people who live, work, travel,
+              and communicate across languages. Our current product focus is
+              <strong>KaiwaKit</strong>, a browser-based conversation assistant designed
+              to help users understand spoken language, view fast translations, and
+              respond with confidence.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="./contact.html">Contact Our Team</a>
+              <a class="button button-secondary" href="./privacy.html">Privacy Policy</a>
+            </div>
+            <ul class="hero-points" aria-label="Highlights">
+              <li>Founded in 2025</li>
+              <li>Remote-first software company</li>
+              <li>Registered in Wyoming, United States</li>
+            </ul>
+          </div>
+
+          <aside class="hero-panel" aria-label="Product overview">
+            <div class="status-pill">Current focus: KaiwaKit Web MVP</div>
+            <h2>Browser-first conversation support for Japan</h2>
+            <p>
+              KaiwaKit is being developed to support fast speech recognition,
+              translation, and guided replies for everyday Japanese conversations.
+            </p>
+            <dl class="metric-grid">
+              <div>
+                <dt>Primary use</dt>
+                <dd>Conversation translation</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>Web application</dd>
+              </div>
+              <div>
+                <dt>Focus market</dt>
+                <dd>Japan and multilingual users</dd>
+              </div>
+              <div>
+                <dt>Company owner</dt>
+                <dd>Whyeung Digital LLC</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section id="company" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Company</p>
+            <h2>Built as a focused software business, not a placeholder page.</h2>
+          </div>
+          <div class="card-grid three-up">
+            <article class="info-card">
+              <h3>Legal entity</h3>
+              <p>
+                Whyeung Digital LLC is a registered limited liability company founded
+                in 2025. The business operates as a remote-first software company with
+                a product-led focus.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>What we build</h3>
+              <p>
+                We develop lightweight browser-based tools, AI-assisted workflows, and
+                practical digital products intended to simplify communication and daily work.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Current product direction</h3>
+              <p>
+                Our main product initiative is KaiwaKit, a translation assistant centered
+                on live listening, translated output, and suggested replies for spoken conversations.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="product" class="section section-highlight">
+          <div class="section-heading">
+            <p class="eyebrow">Product</p>
+            <h2>KaiwaKit helps users follow a conversation and answer naturally.</h2>
+            <p>
+              The product vision is simple: reduce friction in multilingual communication,
+              especially in high-pressure moments where users need clarity quickly.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Live speech understanding</h3>
+              <p>
+                Capture spoken dialogue in the browser and convert it into readable text
+                as quickly as possible for the user.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Fast translation</h3>
+              <p>
+                Turn incoming speech into clear translated output so the user can keep up
+                with the conversation without switching apps.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Suggested replies</h3>
+              <p>
+                Provide short, natural responses that users can speak directly when they
+                need help answering in the target language.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Scenario-aware design</h3>
+              <p>
+                Support common real-world contexts such as restaurant calls, clinics, city halls,
+                customer service calls, and work meetings.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="use-cases" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Use Cases</p>
+            <h2>Made for moments where a missed sentence matters.</h2>
+          </div>
+          <div class="card-grid two-up">
+            <article class="story-card">
+              <h3>Restaurant reservations</h3>
+              <p>
+                Follow booking details, understand times and seat availability, and reply
+                politely during a phone call.
+              </p>
+            </article>
+            <article class="story-card">
+              <h3>Clinic and hospital visits</h3>
+              <p>
+                Catch symptom questions, understand basic instructions, and prepare a clear response.
+              </p>
+            </article>
+            <article class="story-card">
+              <h3>City hall procedures</h3>
+              <p>
+                Navigate formal language during residency, insurance, and document-related visits.
+              </p>
+            </article>
+            <article class="story-card">
+              <h3>Work and everyday calls</h3>
+              <p>
+                Stay oriented in meetings, delivery calls, landlord communication, and general daily interactions.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Services</p>
+            <h2>Our operating scope includes product development and language-focused software work.</h2>
+          </div>
+          <div class="card-grid three-up">
+            <article class="info-card">
+              <h3>Web product development</h3>
+              <p>
+                We design and build browser-based applications with a focus on clear interaction,
+                fast iteration, and lightweight deployment.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Language tooling</h3>
+              <p>
+                We explore practical software for transcription, translation, response assistance,
+                and cross-language communication workflows.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>AI-assisted workflows</h3>
+              <p>
+                We evaluate and integrate third-party AI services when they improve usability,
+                speed, and accessibility for end users.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="trust" class="section section-split">
+          <div>
+            <p class="eyebrow">Trust</p>
+            <h2>Clear company information and transparent operating details.</h2>
+            <p>
+              This website is operated by <strong>Whyeung Digital LLC</strong>. KaiwaKit is a
+              product and brand initiative of the company. We publish company details,
+              contact information, and legal policies to make our identity and operating
+              scope easy to verify.
+            </p>
+            <div class="checklist">
+              <p>Publicly accessible company website</p>
+              <p>Company email on the same domain</p>
+              <p>Legal entity name shown in full</p>
+              <p>Registered office and policy pages published</p>
+            </div>
+          </div>
+          <aside class="profile-card">
+            <h3>Company Profile</h3>
+            <dl>
+              <div>
+                <dt>Company name</dt>
+                <dd>Whyeung Digital LLC</dd>
+              </div>
+              <div>
+                <dt>Founded</dt>
+                <dd>2025</dd>
+              </div>
+              <div>
+                <dt>Entity type</dt>
+                <dd>Limited Liability Company</dd>
+              </div>
+              <div>
+                <dt>Registered office</dt>
+                <dd>30 N Gould St Ste N, Sheridan, WY 82801, USA</dd>
+              </div>
+              <div>
+                <dt>Contact email</dt>
+                <dd><a href="mailto:contact@whyeung.eu.org">contact@whyeung.eu.org</a></dd>
+              </div>
+              <div>
+                <dt>Primary website</dt>
+                <dd><a href="https://whyeung.eu.org/">whyeung.eu.org</a></dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section class="section faq-section">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Common questions about the company and the product.</h2>
+          </div>
+          <div class="faq-list">
+            <article>
+              <h3>What does Whyeung Digital LLC do?</h3>
+              <p>
+                We build web-based digital tools with a current emphasis on language,
+                productivity, and AI-assisted user experiences.
+              </p>
+            </article>
+            <article>
+              <h3>What is KaiwaKit?</h3>
+              <p>
+                KaiwaKit is our translation-focused product initiative for helping users understand
+                spoken language and respond more confidently during live conversations.
+              </p>
+            </article>
+            <article>
+              <h3>Is this a real operating company site?</h3>
+              <p>
+                Yes. This is the public website for Whyeung Digital LLC and includes the company
+                name, registered office, product scope, contact information, and legal policy pages.
+              </p>
+            </article>
+            <article>
+              <h3>How can I contact the company?</h3>
+              <p>
+                Please email <a href="mailto:contact@whyeung.eu.org">contact@whyeung.eu.org</a>
+                for business, platform, partnership, or support inquiries.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cta-section">
+          <p class="eyebrow">Contact</p>
+          <h2>Open for product, partnership, and platform inquiries.</h2>
+          <p>
+            If you are reaching out regarding Whyeung Digital LLC or KaiwaKit, please use our
+            company email address. We review inquiries related to product, platform enrollment,
+            partnerships, and general business communication.
           </p>
-        </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:contact@whyeung.eu.org">Email Us</a>
+            <a class="button button-secondary" href="./contact.html">View Contact Page</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
         <div>
-          <img src="assets/hero.png" alt="..." />
+          <strong>Whyeung Digital LLC</strong>
+          <p>Registered office: 30 N Gould St Ste N, Sheridan, WY 82801, USA</p>
         </div>
-      </section>
-
-      <section class="bg-white p-6 rounded-2xl shadow-md">
-        <h2 class="text-3xl font-semibold mb-4 text-center">What We Do</h2>
-        <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
-          <li>Develop micro SaaS and browser-based productivity tools</li>
-          <li>Publish expert-level newsletters and interactive content</li>
-          <li>Build lightweight AI + automation for solopreneurs</li>
-        </ul>
-      </section>
-
-      <section class="text-center space-y-2">
-        <h2 class="text-3xl font-semibold">Contact</h2>
-        <p class="text-gray-700 text-lg">
-          <a href="mailto:contact@whyeung.eu.org" class="text-blue-600 hover:underline">
-            contact@whyeung.eu.org
-          </a>
+        <div class="footer-links">
+          <a href="./privacy.html">Privacy</a>
+          <a href="./terms.html">Terms</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+        <p class="footer-meta">
+          <span id="current-year">2026</span> Whyeung Digital LLC. Last updated April 8, 2026.
         </p>
-        <p class="text-gray-500 text-sm">
-          Registered Office: 30 N Gould St Ste N, Sheridan, WY 82801, USA
-        </p>
-      </section>
-
-      <footer class="pt-10 border-t text-sm text-gray-400 text-center">
-        &copy; 2025 Whyeung Digital LLC. All rights reserved.
       </footer>
-
     </div>
-  </main>
 
-</body>
+    <script src="./app.js" defer></script>
+  </body>
 </html>
