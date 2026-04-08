@@ -165,8 +165,9 @@ img {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  grid-template-columns: 1fr;
   gap: 22px;
+  align-items: start;
   padding-top: 10px;
 }
 
@@ -211,6 +212,10 @@ img {
 .hero-panel,
 .stack-panel {
   padding: 28px;
+}
+
+.hero-panel {
+  max-width: 860px;
 }
 
 .hero-badge,
@@ -445,7 +450,7 @@ small {
 }
 
 .hero-inner {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+  grid-template-columns: 1fr;
 }
 
 .contact-item {
