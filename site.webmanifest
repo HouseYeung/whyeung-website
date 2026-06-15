@@ -1,11 +1,11 @@
 {
   "name": "Whyeung Digital LLC",
   "short_name": "Whyeung",
-  "description": "Whyeung Digital LLC builds modern web products and software tools.",
+  "description": "Whyeung Digital LLC builds browser-native AI tools and practical web products.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f6f7fb",
-  "theme_color": "#f6f7fb",
+  "background_color": "#f3f5f2",
+  "theme_color": "#f3f5f2",
   "icons": [
     {
       "src": "./favicon.svg",

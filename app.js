@@ -1,12 +1,22 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
+const siteHeader = document.querySelector(".site-header");
 const yearNode = document.querySelector("#current-year");
 const page = document.body.dataset.page;
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
-    const isOpen = siteNav.classList.toggle("is-open");
+    const isOpen = siteHeader?.classList.toggle("is-open") ?? siteNav.classList.toggle("is-open");
+    siteNav.classList.toggle("is-open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      siteHeader?.classList.remove("is-open");
+      siteNav.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
   });
 }
 
