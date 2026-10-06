@@ -3,317 +3,412 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Whyeung Digital LLC | Browser-native AI software company</title>
+    <title>Whyeung — Agent-first software company</title>
     <meta
       name="description"
-      content="Whyeung Digital LLC is a Wyoming software company building browser-native AI tools for multilingual communication and practical digital workflows."
+      content="Whyeung is an agent-first software company with a team in the United States and Japan. Makers of Vocena, real-time captions and translation for iPhone."
     />
-    <meta name="theme-color" content="#f3f5f2" />
-    <meta property="og:title" content="Whyeung Digital LLC" />
-    <meta
-      property="og:description"
-      content="Company profile, product direction, legal information, and contact details for Whyeung Digital LLC."
-    />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Whyeung — Agent-first software company" />
+    <meta property="og:description" content="A small team in the United States and Japan, building software with AI agents at the core. Makers of Vocena." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://whyeung.eu.org/" />
-    <meta property="og:image" content="https://whyeung.eu.org/assets/kaiwakit-concept.png" />
+    <meta property="og:image" content="https://whyeung.eu.org/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://whyeung.eu.org/" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./styles-v3.css" />
+    <link rel="preload" href="./assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./site.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Whyeung Digital LLC",
-        "url": "https://whyeung.eu.org/",
-        "email": "contact@whyeung.eu.org",
-        "foundingDate": "2025",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "30 N Gould St Ste N",
-          "addressLocality": "Sheridan",
-          "addressRegion": "WY",
-          "postalCode": "82801",
-          "addressCountry": "US"
-        },
-        "description": "Whyeung Digital LLC is a remote-first software company building browser-native AI tools and practical web products."
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://whyeung.eu.org/#org",
+            "name": "Whyeung Digital LLC",
+            "alternateName": "Whyeung",
+            "url": "https://whyeung.eu.org/",
+            "logo": "https://whyeung.eu.org/assets/apple-touch-icon.png",
+            "email": "contact@whyeung.eu.org",
+            "foundingDate": "2025",
+            "description": "Agent-first software company with a team in the United States and Japan.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "30 N Gould St Ste N",
+              "addressLocality": "Sheridan",
+              "addressRegion": "WY",
+              "postalCode": "82801",
+              "addressCountry": "US"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Vocena: Captions & Translation",
+            "url": "https://vocena.app/",
+            "operatingSystem": "iOS",
+            "applicationCategory": "UtilitiesApplication",
+            "description": "Real-time captions, translation and scene-based AI that keep running in the background on iPhone.",
+            "publisher": { "@id": "https://whyeung.eu.org/#org" }
+          }
+        ]
       }
     </script>
   </head>
-  <body data-page="company">
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" href="./">
-          <span class="brand-mark" aria-hidden="true">W</span>
-          <span class="brand-copy">
-            <strong>Whyeung Digital LLC</strong>
-            <small>Browser-native software</small>
-          </span>
+    <header class="nav" data-nav>
+      <div class="container nav-inner">
+        <a class="logo" href="./" aria-label="Whyeung home">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="9" />
+            <path d="M7.5 11.5l4.25 10 4.25-8 4.25 8 4.25-10" />
+          </svg>
+          <span>Whyeung</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
-        <nav id="site-nav" class="site-nav" aria-label="Primary">
-          <a href="./">Company</a>
-          <a href="./product.html">KaiwaKit</a>
-          <a href="./contact.html">Contact</a>
-          <a href="./privacy.html">Privacy</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#approach">Approach</a>
+          <a href="#vocena">Vocena</a>
+          <a href="#team">Team</a>
+          <a href="#contact">Contact</a>
         </nav>
-        <a class="nav-cta" href="./contact.html">Business inquiry</a>
-      </header>
+        <a class="btn btn-ink btn-sm" href="https://vocena.app/" target="_blank" rel="noopener">
+          Get Vocena
+          <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6.5 5H11v4.5" /></svg>
+        </a>
+      </div>
+    </header>
 
-      <main id="main">
-        <section class="hero reveal-block">
-          <div class="hero-content">
-            <div>
-              <p class="kicker">Wyoming LLC / Founded 2025</p>
-              <h1>Building AI software for people working across languages.</h1>
-              <p class="hero-lead">
-                Whyeung Digital LLC is a remote-first software company developing
-                browser-native tools for multilingual communication, lightweight workflows,
-                and practical AI assistance.
-              </p>
-              <div class="hero-actions">
-                <a class="button button-primary" href="./product.html">View KaiwaKit concept</a>
-                <a class="button button-secondary" href="./contact.html">Contact the company</a>
-              </div>
-            </div>
-
-            <div class="hero-meta" aria-label="Company summary">
-              <div>
-                <span>Entity</span>
-                <strong>Whyeung Digital LLC</strong>
-              </div>
-              <div>
-                <span>Registered</span>
-                <strong>Sheridan, Wyoming</strong>
-              </div>
-              <div>
-                <span>Model</span>
-                <strong>Remote-first</strong>
-              </div>
-              <div>
-                <span>Focus</span>
-                <strong>AI web products</strong>
-              </div>
-            </div>
+    <main id="main">
+      <section class="hero">
+        <div class="container hero-inner">
+          <p class="pill"><span class="pulse" aria-hidden="true"></span>Agent-first software company</p>
+          <h1>Software, built <span class="nowrap grad">agent-first.</span></h1>
+          <p class="lead">
+            A small team across the United States and Japan. Agents plan, write and test
+            the code. People decide what’s worth building.
+          </p>
+          <div class="actions">
+            <a class="btn btn-ink" href="#vocena">
+              Meet Vocena
+              <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
           </div>
-
-          <aside class="hero-visual" aria-label="Company and product concept">
-            <div class="visual-frame">
-              <img
-                src="./assets/kaiwakit-concept.png"
-                width="1600"
-                height="1100"
-                alt="Abstract KaiwaKit concept visual showing speech, translation, and reply assistance layers."
-                loading="eager"
-              />
-            </div>
-            <div class="review-panel">
-              <p class="section-label">Public review file</p>
-              <h2>Clear operator, policies, and contact routes.</h2>
-              <div class="review-list">
-                <div>
-                  <span>Legal name</span>
-                  <strong>Whyeung Digital LLC</strong>
-                </div>
-                <div>
-                  <span>Office</span>
-                  <strong>30 N Gould St Ste N, Sheridan, WY 82801, USA</strong>
-                </div>
-                <div>
-                  <span>Email</span>
-                  <strong><a href="mailto:contact@whyeung.eu.org">contact@whyeung.eu.org</a></strong>
-                </div>
-                <div>
-                  <span>Policies</span>
-                  <strong><a href="./privacy.html">Privacy</a> and <a href="./terms.html">Terms</a></strong>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <section class="section reveal-block">
-          <div class="section-intro">
-            <div>
-              <p class="section-label">Product direction</p>
-              <h2>A focused path into real-time conversation assistance.</h2>
-            </div>
-            <p>
-              Our current product concept is KaiwaKit, a browser-based assistant designed
-              to help users understand spoken foreign-language conversations and prepare
-              concise, natural replies.
-            </p>
-          </div>
-
-          <div class="split-section">
-            <article class="statement-panel">
-              <p class="status-label">KaiwaKit concept</p>
-              <h3>Listen to the conversation, translate the meaning, and suggest what to say next.</h3>
-              <p>
-                KaiwaKit is being shaped around live speech recognition, fast translation,
-                and AI-generated reply options for everyday situations where a user needs
-                language help in the moment.
-              </p>
-              <div class="inline-links">
-                <a href="./product.html">Read the product concept</a>
-                <a href="./contact.html">Discuss partnership fit</a>
-              </div>
-            </article>
-
-            <div class="status-stack">
-              <article class="status-card">
-                <strong>Not a general release announcement</strong>
-                <p>
-                  The site describes the product concept without publishing private
-                  development progress, provider tests, or launch timelines.
-                </p>
-              </article>
-              <article class="status-card">
-                <strong>Browser-first direction</strong>
-                <p>
-                  The product direction favors web access, low setup cost, and a compact
-                  interface that can be evaluated quickly.
-                </p>
-              </article>
-              <article class="status-card">
-                <strong>Human-centered output</strong>
-                <p>
-                  The goal is not only translation accuracy, but useful wording that helps
-                  a person respond with confidence.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="section reveal-block">
-          <div class="section-intro">
-            <div>
-              <p class="section-label">Operating principles</p>
-              <h2>Built for practical review, controlled scope, and responsible integration.</h2>
-            </div>
-            <p>
-              We keep the public footprint straightforward: real company information,
-              specific product intent, plain-language policies, and clear contact paths.
-            </p>
-          </div>
-
-          <div class="principle-grid">
-            <article class="principle-card">
-              <p class="meta-label">01</p>
-              <h3>Focused product surface</h3>
-              <p>
-                We prefer narrow products with a concrete job over broad platforms that
-                dilute execution and review clarity.
-              </p>
-            </article>
-            <article class="principle-card">
-              <p class="meta-label">02</p>
-              <h3>Provider-agnostic design</h3>
-              <p>
-                AI, speech, and translation providers are treated as replaceable layers
-                so quality, latency, and cost can be evaluated honestly.
-              </p>
-            </article>
-            <article class="principle-card">
-              <p class="meta-label">03</p>
-              <h3>Data-minimal UX</h3>
-              <p>
-                Product decisions are oriented around showing users what they need now
-                while avoiding unnecessary collection or account complexity.
-              </p>
-            </article>
-            <article class="principle-card">
-              <p class="meta-label">04</p>
-              <h3>Measurable usefulness</h3>
-              <p>
-                The product concept prioritizes response speed, recognition quality, and
-                practical language output that can be tested in realistic scenarios.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section reveal-block">
-          <div class="section-intro">
-            <div>
-              <p class="section-label">Company profile</p>
-              <h2>Public business information.</h2>
-            </div>
-            <p>
-              This website is maintained as the public presence for Whyeung Digital LLC
-              and includes operator identity, contact details, and legal policy pages.
-            </p>
-          </div>
-
-          <div class="profile-grid">
-            <article class="profile-card">
-              <div class="profile-row">
-                <span>Company name</span>
-                <strong>Whyeung Digital LLC</strong>
-              </div>
-              <div class="profile-row">
-                <span>Entity type</span>
-                <strong>Limited Liability Company</strong>
-              </div>
-              <div class="profile-row">
-                <span>Founded</span>
-                <strong>2025</strong>
-              </div>
-              <div class="profile-row">
-                <span>Registered office</span>
-                <strong>30 N Gould St Ste N, Sheridan, WY 82801, USA</strong>
-              </div>
-              <div class="profile-row">
-                <span>Contact email</span>
-                <strong><a href="mailto:contact@whyeung.eu.org">contact@whyeung.eu.org</a></strong>
-              </div>
-              <div class="profile-row">
-                <span>Primary website</span>
-                <strong><a href="https://whyeung.eu.org/">whyeung.eu.org</a></strong>
-              </div>
-            </article>
-
-            <aside class="contact-card">
-              <div>
-                <p class="section-label">Business contact</p>
-                <h3>For platform review, partnerships, and company verification.</h3>
-                <p>
-                  Use email for company inquiries, product interest, platform compliance
-                  questions, and partnership discussions.
-                </p>
-              </div>
-              <div class="inline-links">
-                <a href="mailto:contact@whyeung.eu.org">Email Whyeung Digital</a>
-                <a href="./contact.html">Contact page</a>
-              </div>
-            </aside>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div>
-          <strong>Whyeung Digital LLC</strong>
-          <p>Registered office: 30 N Gould St Ste N, Sheridan, WY 82801, USA</p>
         </div>
-        <div class="footer-links">
-          <a href="./">Company</a>
-          <a href="./product.html">KaiwaKit</a>
-          <a href="./contact.html">Contact</a>
+
+        <div class="container console-wrap">
+          <figure class="console" data-animate aria-label="How a feature moves through our pipeline, from human spec to agent build to human review and release.">
+            <div class="console-bar">
+              <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="console-title">whyeung / pipeline</span>
+              <span class="console-live"><span class="pulse" aria-hidden="true"></span>running</span>
+            </div>
+            <p class="console-cmd"><span>$</span> ship feature/floating-captions</p>
+            <ol class="console-rows">
+              <li style="--i: 0">
+                <span class="c-step">spec</span>
+                <span class="tag tag-human">human</span>
+                <span class="c-text">Captions that float over any app</span>
+                <span class="c-status"><i class="spin"></i><svg class="i ok" viewBox="0 0 16 16" aria-label="done"><path d="M3.5 8.5l3 3 6-7" /></svg></span>
+              </li>
+              <li style="--i: 1">
+                <span class="c-step">plan</span>
+                <span class="tag tag-agent">agent</span>
+                <span class="c-text">Split into parallel tasks</span>
+                <span class="c-status"><i class="spin"></i><svg class="i ok" viewBox="0 0 16 16" aria-label="done"><path d="M3.5 8.5l3 3 6-7" /></svg></span>
+              </li>
+              <li style="--i: 2">
+                <span class="c-step">build</span>
+                <span class="tag tag-agent">agent ×3</span>
+                <span class="c-text">Overlay · Dynamic Island · on-device speech</span>
+                <span class="c-status"><i class="spin"></i><svg class="i ok" viewBox="0 0 16 16" aria-label="done"><path d="M3.5 8.5l3 3 6-7" /></svg></span>
+              </li>
+              <li style="--i: 3">
+                <span class="c-step">test</span>
+                <span class="tag tag-agent">agent</span>
+                <span class="c-text">All checks passing</span>
+                <span class="c-status"><i class="spin"></i><svg class="i ok" viewBox="0 0 16 16" aria-label="done"><path d="M3.5 8.5l3 3 6-7" /></svg></span>
+              </li>
+              <li style="--i: 4">
+                <span class="c-step">review</span>
+                <span class="tag tag-human">human</span>
+                <span class="c-text">Approved</span>
+                <span class="c-status"><i class="spin"></i><svg class="i ok" viewBox="0 0 16 16" aria-label="done"><path d="M3.5 8.5l3 3 6-7" /></svg></span>
+              </li>
+              <li style="--i: 5" class="is-ship">
+                <span class="c-step">ship</span>
+                <span class="tag tag-ship">release</span>
+                <span class="c-text">Vocena for iPhone</span>
+                <span class="c-status"><span class="live">Live</span></span>
+              </li>
+            </ol>
+          </figure>
+        </div>
+      </section>
+
+      <section id="approach" class="section">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="label"><span>01</span>Approach</p>
+            <h2>Agents do the work.<br />People set the bar.</h2>
+          </header>
+          <div class="pillars">
+            <article class="pillar reveal">
+              <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="4" /><path d="M12 3.5V7M9 13h.01M15 13h.01" /></svg>
+              <h3>Agent-native</h3>
+              <p>Every change is planned, written and tested by agents. By default.</p>
+            </article>
+            <article class="pillar reveal">
+              <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1.3-3.6 3.9-5.5 7-5.5s5.7 1.9 7 5.5" /></svg>
+              <h3>Human judgment</h3>
+              <p>People own the product, the taste and every final review.</p>
+            </article>
+            <article class="pillar reveal">
+              <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h9M4 12h16M4 17.5h12" /><circle cx="16.5" cy="6.5" r="1.6" /><circle cx="19.5" cy="17.5" r="1.6" /></svg>
+              <h3>Small by design</h3>
+              <p>A few people running many agents in parallel.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="vocena" class="section">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="label"><span>02</span>Product</p>
+            <h2>Our first product.</h2>
+          </header>
+
+          <article class="product reveal">
+            <div class="product-copy">
+              <p class="product-meta"><span class="badge">iPhone</span>Free live captions</p>
+              <h3 class="product-name">Vocena</h3>
+              <p class="product-tag">Captions &amp; translation.<br />Custom AI for every scene.</p>
+              <p class="product-lead">
+                Live captions that keep running in the background, with one-tap AI for
+                class, meetings, travel, or any scene you set up.
+              </p>
+              <div class="actions">
+                <a class="btn btn-light" href="https://vocena.app/" target="_blank" rel="noopener">
+                  Visit vocena.app
+                  <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6.5 5H11v4.5" /></svg>
+                </a>
+              </div>
+
+              <ul class="features">
+                <li>
+                  <svg class="fi" viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="5" width="10" height="10" rx="2.5" /><path d="M8 2.5V5M12 2.5V5M8 15v2.5M12 15v2.5M2.5 8H5M2.5 12H5M15 8h2.5M15 12h2.5" /></svg>
+                  <div>
+                    <strong>On-device</strong>
+                    <p>Qwen speech model tuned for the Neural Engine. Works offline.</p>
+                  </div>
+                </li>
+                <li>
+                  <svg class="fi" viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="6" width="11" height="11" rx="2.5" /><path d="M7 3.5h7.5A2.5 2.5 0 0 1 17 6v7.5" /></svg>
+                  <div>
+                    <strong>Over any app</strong>
+                    <p>Floating captions and Dynamic Island, uninterrupted.</p>
+                  </div>
+                </li>
+                <li>
+                  <svg class="fi" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5l1.7 5.1 5.3.4-4.1 3.3 1.3 5.2L10 13.6l-4.2 2.9 1.3-5.2L3 8l5.3-.4z" /></svg>
+                  <div>
+                    <strong>Scenes &amp; AI keys</strong>
+                    <p>Summarize, explain or suggest a reply from what you just heard.</p>
+                  </div>
+                </li>
+                <li>
+                  <svg class="fi" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" /><path d="M7 10.2l2 2 4-4.4" /></svg>
+                  <div>
+                    <strong>Buy once</strong>
+                    <p>Core captions are free. Plus is a lifetime unlock.</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="langs">
+                <p>11 speech languages</p>
+                <ul>
+                  <li>English</li>
+                  <li>Mandarin</li>
+                  <li>Cantonese</li>
+                  <li>Japanese</li>
+                  <li>Korean</li>
+                  <li>French</li>
+                  <li>German</li>
+                  <li>Italian</li>
+                  <li>Spanish</li>
+                  <li>Portuguese</li>
+                  <li>Russian</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="product-visual" data-animate>
+              <div class="phone" role="img" aria-label="Vocena on iPhone in the Meeting scene: live captions in the Dynamic Island and an Action items answer linked to the source sentences.">
+                <div class="screen" aria-hidden="true">
+                  <div class="island">
+                    <span class="rec"></span>
+                    <p>And Ken owns onboarding, due Thursday.</p>
+                    <span class="wave"><i></i><i></i><i></i><i></i><i></i></span>
+                  </div>
+
+                  <div class="app-top">
+                    <div>
+                      <small>Scene</small>
+                      <strong>Meeting</strong>
+                    </div>
+                    <span class="app-badge">
+                      <svg viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10" rx="2.5" /><path d="M8 2.5V5M12 2.5V5M8 15v2.5M12 15v2.5" /></svg>
+                      On-device
+                    </span>
+                  </div>
+
+                  <div class="scenes">
+                    <span>Default</span><span>Class</span><span class="on">Meeting</span><span>Video</span><span>Conversation</span><span>Dictation</span>
+                  </div>
+
+                  <ol class="caps">
+                    <li><time>00:08</time><p>Let’s lock the launch checklist today.</p></li>
+                    <li class="hl"><time>00:15</time><p>Mia, can you take the pricing page?</p></li>
+                    <li><time>00:19</time><p>Sure, I’ll have it done by Wednesday.</p></li>
+                    <li class="is-now hl"><time>00:27</time><p>And Ken owns onboarding, due Thursday.<i class="caret"></i></p></li>
+                  </ol>
+
+                  <div class="answer">
+                    <div class="answer-head">
+                      <svg viewBox="0 0 20 20"><path d="M10 2.5l1.7 5.1 5.3.4-4.1 3.3 1.3 5.2L10 13.6l-4.2 2.9 1.3-5.2L3 8l5.3-.4z" /></svg>
+                      Action items
+                    </div>
+                    <ul>
+                      <li>
+                        <b>M</b>
+                        <span><strong>Pricing page</strong><em>Mia · Wed</em></span>
+                        <span class="src"><svg viewBox="0 0 16 16"><path d="M4 3v5a2 2 0 0 0 2 2h6M9.5 7.5L12 10l-2.5 2.5" /></svg>00:15</span>
+                      </li>
+                      <li>
+                        <b>K</b>
+                        <span><strong>Onboarding</strong><em>Ken · Thu</em></span>
+                        <span class="src"><svg viewBox="0 0 16 16"><path d="M4 3v5a2 2 0 0 0 2 2h6M9.5 7.5L12 10l-2.5 2.5" /></svg>00:27</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="keys">
+                    <span class="key on">
+                      <svg viewBox="0 0 20 20"><path d="M10 2.5l1.7 5.1 5.3.4-4.1 3.3 1.3 5.2L10 13.6l-4.2 2.9 1.3-5.2L3 8l5.3-.4z" /></svg>
+                      Action items
+                    </span>
+                    <span class="key">Summarize</span>
+                  </div>
+                  <span class="home"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="team" class="section">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="label"><span>03</span>Team</p>
+            <h2>United States + Japan.</h2>
+            <p class="section-sub">Two teams handing off across the Pacific. Agents run around the clock.</p>
+          </header>
+
+          <div class="places">
+            <article class="place reveal" data-clock="America/Denver">
+              <div class="place-top">
+                <h3>United States</h3>
+                <span class="state" data-state>Agents on shift</span>
+              </div>
+              <p class="clock"><span data-time>--:--</span><small data-abbr>MT</small></p>
+              <p class="place-sub">Headquarters · Sheridan, Wyoming</p>
+            </article>
+            <article class="place reveal" data-clock="Asia/Tokyo">
+              <div class="place-top">
+                <h3>Japan</h3>
+                <span class="state" data-state>Agents on shift</span>
+              </div>
+              <p class="clock"><span data-time>--:--</span><small>JST</small></p>
+              <p class="place-sub">Japan Standard Time</p>
+            </article>
+          </div>
+
+          <figure class="timeline reveal" data-timeline aria-label="24-hour view: agents work around the clock while the US and Japan workdays hand off to each other.">
+            <figcaption class="tl-head">
+              <span>Today · your local time</span>
+              <span class="tl-now">Now <b data-now>--:--</b></span>
+            </figcaption>
+            <div class="tl-rows">
+              <div class="tl-row">
+                <span class="tl-name tl-name-agent">Agents</span>
+                <div class="tl-track"><span class="tl-seg tl-agents" style="left: 0; width: 100%"></span></div>
+              </div>
+              <div class="tl-row">
+                <span class="tl-name">United States</span>
+                <div class="tl-track" data-tz="America/Denver"><span class="tl-seg" style="left: 62.5%; width: 37.5%"></span></div>
+              </div>
+              <div class="tl-row">
+                <span class="tl-name">Japan</span>
+                <div class="tl-track" data-tz="Asia/Tokyo"><span class="tl-seg" style="left: 0; width: 37.5%"></span></div>
+              </div>
+              <div class="tl-overlay" aria-hidden="true"><span class="tl-needle" data-needle></span></div>
+            </div>
+            <div class="tl-ticks" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+          </figure>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container contact-inner reveal">
+          <p class="label"><span>04</span>Contact</p>
+          <h2>Let’s talk.</h2>
+          <p class="section-sub">Partnerships, press, or questions about Vocena.</p>
+          <div class="email-row">
+            <a class="email" href="mailto:contact@whyeung.eu.org">contact@whyeung.eu.org</a>
+            <button class="btn btn-ghost btn-sm copy" type="button" data-copy="contact@whyeung.eu.org">
+              <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="2" /><path d="M10.5 3.5A1.5 1.5 0 0 0 9 2.5H4A1.5 1.5 0 0 0 2.5 4v5A1.5 1.5 0 0 0 3.5 10.5" /></svg>
+              <span data-copy-label>Copy</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a class="logo" href="./" aria-label="Whyeung home">
+            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="9" />
+              <path d="M7.5 11.5l4.25 10 4.25-8 4.25 8 4.25-10" />
+            </svg>
+            <span>Whyeung Digital LLC</span>
+          </a>
+          <p>30 N Gould St Ste N, Sheridan, WY 82801, USA</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="https://vocena.app/" target="_blank" rel="noopener">Vocena</a>
           <a href="./privacy.html">Privacy</a>
           <a href="./terms.html">Terms</a>
-        </div>
-        <p class="footer-meta"><span id="current-year">2026</span> Whyeung Digital LLC</p>
-      </footer>
-    </div>
+          <a href="mailto:contact@whyeung.eu.org">Contact</a>
+        </nav>
+      </div>
+      <div class="container footer-base">
+        <span>© <span data-year>2026</span> Whyeung Digital LLC</span>
+        <span>United States · Japan</span>
+      </div>
+    </footer>
 
-    <script src="./app.js" defer></script>
+    <script src="./site.js" defer></script>
   </body>
 </html>

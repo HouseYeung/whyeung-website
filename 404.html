@@ -3,30 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page Not Found | Whyeung Digital LLC</title>
+    <title>Page not found — Whyeung</title>
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#f3f5f2" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles-v3.css" />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/site.css" />
   </head>
-  <body data-page="404">
-    <a class="skip-link" href="#main">Skip to content</a>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="logo" href="/" aria-label="Whyeung home">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="9" />
+            <path d="M7.5 11.5l4.25 10 4.25-8 4.25 8 4.25-10" />
+          </svg>
+          <span>Whyeung</span>
+        </a>
+      </div>
+    </header>
 
-    <div class="page-shell">
-      <main id="main" class="not-found reveal-block">
-        <p class="kicker">404</p>
-        <h1>That page is not available.</h1>
-        <p>
-          Use the company homepage to continue browsing public information for
-          Whyeung Digital LLC.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="./">Back to company page</a>
-          <a class="button button-secondary" href="./contact.html">Contact</a>
-        </div>
-      </main>
-    </div>
-
-    <script src="./app.js" defer></script>
+    <main class="container not-found">
+      <p class="code">404</p>
+      <h1>Nothing here.</h1>
+      <p>The page you’re looking for doesn’t exist.</p>
+      <div class="actions">
+        <a class="btn btn-ink" href="/">
+          Back home
+          <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+        </a>
+      </div>
+    </main>
   </body>
 </html>

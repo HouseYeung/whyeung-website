@@ -1,17 +1,22 @@
 {
-  "name": "Whyeung Digital LLC",
+  "name": "Whyeung",
   "short_name": "Whyeung",
-  "description": "Whyeung Digital LLC builds browser-native AI tools and practical web products.",
+  "description": "Agent-first software company with a team in the United States and Japan.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f3f5f2",
-  "theme_color": "#f3f5f2",
+  "background_color": "#fafaf9",
+  "theme_color": "#fafaf9",
   "icons": [
     {
       "src": "./favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "./assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }
