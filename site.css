@@ -262,6 +262,10 @@ p {
   letter-spacing: -0.02em;
 }
 
+.logo span {
+  white-space: nowrap;
+}
+
 .mark {
   width: 26px;
   height: 26px;
@@ -1314,6 +1318,36 @@ p {
   .doc-body section {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-inner {
+    gap: 12px;
+  }
+
+  .logo {
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .mark {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-inner > .btn {
+    padding: 0 12px;
+  }
+
+  .nav-inner > .btn .i {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .btn-prefix {
+    display: none;
   }
 }
 
