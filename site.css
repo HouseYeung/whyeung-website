@@ -270,21 +270,14 @@ p {
 }
 
 .mark {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 28px;
   flex: none;
 }
 
-.mark rect {
-  fill: var(--ink);
-}
-
 .mark path {
-  fill: none;
-  stroke: var(--bg);
-  stroke-width: 2.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill: currentColor;
+  stroke: none;
 }
 
 .nav-links {
@@ -397,14 +390,6 @@ p {
 
 .nav-dark.is-scrolled {
   border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-.nav-dark .mark rect {
-  fill: #fafafa;
-}
-
-.nav-dark .mark path {
-  stroke: #09090b;
 }
 
 .nav-dark .nav-links a {
@@ -1078,8 +1063,8 @@ p {
   }
 
   .mark {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 25px;
   }
 
   .nav-inner > .btn {

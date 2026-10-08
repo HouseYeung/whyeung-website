@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>Whyeung</title>
-  <style>
-    rect { fill: #0a0a0b; }
-    path { stroke: #fafaf9; }
-    @media (prefers-color-scheme: dark) {
-      rect { fill: #f4f4f5; }
-      path { stroke: #09090b; }
-    }
-  </style>
-  <rect width="32" height="32" rx="9" />
-  <path d="M7.5 11.5l4.25 10 4.25-8 4.25 8 4.25-10" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><title>Whyeung eagle W</title><style>.badge{fill:#0a0a0b}.eagle{fill:#fafaf9}@media(prefers-color-scheme:dark){.badge{fill:#fafaf9}.eagle{fill:#09090b}}</style><rect class="badge" width="100" height="100" rx="24"/><path class="eagle" d="M4 8 31 31 39 51 48 31 45 29Q53 26 60 28L67 30Q73 32 71 38Q67 34 62 36L61 37 67 50 69 51 80 30 96 8 90 27 74 42 89 34 84 48 70 56 81 53 65 76 50 53 35 76 19 53 31 57 16 47 11 34 26 42 10 27Z M54 30 60 31 57 33Z" transform="translate(5 12) scale(.9)" fill-rule="evenodd"/></svg>

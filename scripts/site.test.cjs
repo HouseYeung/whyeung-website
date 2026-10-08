@@ -127,3 +127,37 @@ test("pixel density is bounded on Retina, ultrawide and mobile screens", () => {
     assert.ok(width*height*ratio*ratio<=(coarse?900000:1800000)+1e-6);
   }
 });
+
+test("every visible company mark uses the same eagle W silhouette", () => {
+  const { EAGLE_PATH } = require("./brand-mark.cjs");
+  let count = 0;
+  for (const name of ["index.html", "privacy.html", "terms.html", "404.html"]) {
+    const html = read(name), marks = [...html.matchAll(/<svg class="mark"[\s\S]*?<\/svg>/g)];
+    assert.ok(marks.length > 0, name);
+    for (const [mark] of marks) {
+      assert.ok(mark.includes(EAGLE_PATH), name);
+      assert.match(mark, /fill-rule="evenodd"/);
+      assert.doesNotMatch(mark, /M7\.5 11\.5|<rect/);
+      count++;
+    }
+  }
+  assert.equal(count, 7);
+});
+test("favicon and standalone SVG use the same eagle mark", () => {
+  const { EAGLE_PATH } = require("./brand-mark.cjs");
+  assert.ok(read("favicon.svg").includes(EAGLE_PATH));
+  assert.ok(read("assets/eagle-w.svg").includes(EAGLE_PATH));
+  assert.match(read("favicon.svg"), /prefers-color-scheme:dark/);
+});
+test("home screen icon and sharing card are versioned and have correct dimensions", () => {
+  const icon = readFileSync(join(root, "assets/eagle-apple-touch-icon.png"));
+  assert.equal(icon.readUInt32BE(16), 180); assert.equal(icon.readUInt32BE(20), 180);
+  const card = readFileSync(join(root, "assets/og-eagle-ai-era.png"));
+  assert.equal(card.readUInt32BE(16), 1200); assert.equal(card.readUInt32BE(20), 630);
+  const html = read("index.html");
+  assert.match(html, /og-eagle-ai-era\.png/);
+  assert.match(html, /eagle-apple-touch-icon\.png/);
+  assert.match(html, /favicon\.svg\?v=eagle-w-1/);
+  const manifest = JSON.parse(read("site.webmanifest"));
+  assert.ok(manifest.icons.some(icon=>icon.src.includes("eagle-apple-touch-icon")));
+});

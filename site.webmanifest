@@ -8,13 +8,13 @@
   "theme_color": "#fafaf9",
   "icons": [
     {
-      "src": "./favicon.svg",
+      "src": "./favicon.svg?v=eagle-w-1",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "./assets/apple-touch-icon.png",
+      "src": "./assets/eagle-apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

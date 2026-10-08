@@ -4,12 +4,14 @@
   "version": "1.0.0",
   "scripts": {
     "build:particles": "node scripts/build-particles.mjs",
-    "test": "node --test scripts/site.test.cjs"
+    "test": "node --test scripts/site.test.cjs",
+    "build:branding": "node scripts/build-branding.mjs"
   },
   "dependencies": {
     "three": "0.186.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
     "esbuild": "0.28.2"
   }
 }
