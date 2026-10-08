@@ -1,9 +1,9 @@
 {
   "name": "whyeung-site",
-  "main": "worker.js",
   "compatibility_date": "2026-04-08",
   "assets": {
-    "binding": "ASSETS",
-    "directory": "."
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
   }
 }

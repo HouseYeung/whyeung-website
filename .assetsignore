@@ -1,0 +1,11 @@
+# The assets directory is the repo root, so keep repo and tooling files out of the upload.
+.git
+.github
+.claude
+.wrangler
+node_modules
+.assetsignore
+.nojekyll
+CNAME
+wrangler.jsonc
+*.md
