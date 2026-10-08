@@ -314,22 +314,132 @@ p {
 
 .hero {
   position: relative;
-  padding: 104px 0 96px;
+  display: flex;
+  align-items: center;
+  min-height: clamp(720px, 86svh, 960px);
+  padding: 96px 0 112px;
   isolation: isolate;
+  overflow: hidden;
+  background: #020203;
+  color: #fafafa;
 }
 
-.hero::before {
+.hero-orb {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-orb-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-orb-fallback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 88vh, 900px);
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.has-webgl .hero-orb-fallback {
+  visibility: hidden;
+}
+
+.hero::after {
   content: "";
   position: absolute;
-  inset: -64px 0 0;
+  inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 56px 56px;
-  background-position: center top;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 75%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, #000 30%, transparent 75%);
+  pointer-events: none;
+  background: radial-gradient(ellipse 34% 24% at 50% 48%, rgba(2, 2, 3, 0.62), transparent 100%);
+}
+
+.hero .lead {
+  color: #d5d5d8;
+  text-shadow: 0 1px 14px #000;
+}
+
+.hero h1 {
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.9);
+}
+
+.hero .btn-ink,
+.nav-dark .btn-ink {
+  background: #fafafa;
+  color: #09090b;
+}
+
+.hero .btn-ghost {
+  background: rgba(2, 2, 3, 0.68);
+  border-color: #6e6e74;
+  color: #fafafa;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero .btn-ink:hover,
+  .nav-dark .btn-ink:hover {
+    background: #e5e5e7;
+  }
+  .hero .btn-ghost:hover {
+    border-color: #fafafa;
+  }
+}
+
+.nav-dark {
+  background: #020203;
+  color: #fafafa;
+}
+
+.nav-dark.is-scrolled {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-dark .mark rect {
+  fill: #fafafa;
+}
+
+.nav-dark .mark path {
+  stroke: #09090b;
+}
+
+.nav-dark .nav-links a {
+  color: #c4c4c9;
+}
+
+.nav-dark .nav-links a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.orb-toggle {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 28px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #f4f4f5;
+  cursor: pointer;
+}
+
+.orb-toggle[hidden],
+.orb-toggle .orb-play,
+.orb-toggle[aria-pressed="true"] .orb-pause {
+  display: none;
+}
+
+.orb-toggle[aria-pressed="true"] .orb-play {
+  display: block;
 }
 
 .hero-inner {
@@ -891,7 +1001,8 @@ p {
   }
 
   .hero {
-    padding: 72px 0 72px;
+    min-height: 680px;
+    padding: 88px 0 96px;
   }
 
   .actions {

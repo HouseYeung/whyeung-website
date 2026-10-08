@@ -3,11 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build:motion": "node scripts/build-motion.mjs",
+    "build:particles": "node scripts/build-particles.mjs",
     "test": "node --test scripts/site.test.cjs"
   },
   "dependencies": {
-    "motion": "14.0.0"
+    "three": "0.186.1"
   },
   "devDependencies": {
     "esbuild": "0.28.2"

@@ -10,7 +10,7 @@ CNAME
 wrangler.jsonc
 *.md
 
-# Checked-in Motion bundle is served directly; tooling is never a public asset.
+# Checked-in Three.js particle bundle is served directly; tooling is never a public asset.
 package.json
 package-lock.json
 scripts

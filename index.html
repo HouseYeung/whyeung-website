@@ -55,7 +55,7 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="nav" data-nav>
+    <header class="nav nav-dark" data-nav>
       <div class="container nav-inner">
         <a class="logo" href="./" aria-label="Whyeung Digital LLC home">
           <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
@@ -77,9 +77,17 @@
     </header>
 
     <main id="main">
-      <section class="hero">
+      <section class="hero" data-particle-hero>
+        <div class="hero-orb" aria-hidden="true">
+          <img class="hero-orb-fallback" src="./assets/particle-sphere.svg" width="1000" height="1000" alt="" />
+          <canvas class="hero-orb-canvas" data-particle-canvas></canvas>
+        </div>
+        <button class="orb-toggle" type="button" data-particle-toggle aria-label="Pause particle animation" aria-pressed="false" hidden>
+          <svg class="i orb-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 4v8M11 4v8" /></svg>
+          <svg class="i orb-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l7 5-7 5z" /></svg>
+        </button>
         <div class="container hero-inner">
-          <h1>Software for<br /><span class="nowrap grad">the AI era.</span></h1>
+          <h1>Software for<br /><span class="nowrap">the AI era.</span></h1>
           <p class="lead">
             We are a small software development company that builds useful software for the AI era. Our first product, Vocena, brings live captions, translation, and AI assistance to iPhone and Mac.
           </p>
@@ -96,22 +104,22 @@
 
       <section id="approach" class="section">
         <div class="container">
-          <header class="section-head reveal">
+          <header class="section-head">
             <p class="label"><span>01</span>Approach</p>
             <h2>Small team.<br />Practical software.</h2>
           </header>
           <div class="pillars">
-            <article class="pillar reveal">
+            <article class="pillar">
               <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5" /></svg>
               <h3>Useful software</h3>
               <p>Our software serves everyday needs with clear interfaces and features that earn their place.</p>
             </article>
-            <article class="pillar reveal">
+            <article class="pillar">
               <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z" /></svg>
               <h3>Practical AI</h3>
               <p>We use AI only where it makes our software more helpful and keeps things simple.</p>
             </article>
-            <article class="pillar reveal">
+            <article class="pillar">
               <svg class="pi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1.3-3.6 3.9-5.5 7-5.5s5.7 1.9 7 5.5" /></svg>
               <h3>Small and focused</h3>
               <p>We are a small team focused on a few products we can develop and maintain with care.</p>
@@ -122,12 +130,12 @@
 
       <section id="vocena" class="section">
         <div class="container">
-          <header class="section-head reveal">
+          <header class="section-head">
             <p class="label"><span>02</span>Product</p>
             <h2>Our first product.</h2>
           </header>
 
-          <article class="product reveal">
+          <article class="product">
             <div class="product-top">
               <div class="product-copy">
                 <div class="product-brand">
@@ -222,7 +230,7 @@
       </section>
 
       <section id="contact" class="section contact">
-        <div class="container contact-inner reveal">
+        <div class="container contact-inner">
           <p class="label"><span>03</span>Contact</p>
           <h2>Let’s talk.</h2>
           <p class="section-sub">Partnerships, press, or questions about Vocena.</p>
@@ -261,7 +269,7 @@
       </div>
     </footer>
 
-    <script src="./assets/vendor/motion.js" defer></script>
+    <script src="./assets/particles.js" defer></script>
     <script src="./site.js" defer></script>
   </body>
 </html>

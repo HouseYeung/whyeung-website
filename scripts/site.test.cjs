@@ -3,84 +3,92 @@ const assert = require("node:assert/strict");
 const vm = require("node:vm");
 const { readFileSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
-const source = readFileSync(join(__dirname, "../site.js"), "utf8");
+const { buildSync } = require("esbuild");
+const { createParticleData, choosePointCount, canAnimate } = require("./particle-data.cjs");
+const root = join(__dirname, "..");
+const read = (name) => readFileSync(join(root, name), "utf8");
 
-function boot({ reduced = false, missingLibrary = false, noWaapi = false, hash = "" } = {}) {
-  const windowEvents = {}, documentEvents = {}, preferenceEvents = {};
-  const hero = ["heading", "lead", "actions"].map((name) => ({ name, contains: (target) => target?.parent === name }));
-  const cards = [0, 1, 2].map((index) => ({ index, contains: () => false }));
-  const year = {}, copyLabel = {}, copyEvents = {}, calls = [], controls = [];
-  const button = { dataset: { copy: "contact@whyeung.com" }, querySelector: () => copyLabel, addEventListener: (event, fn) => copyEvents[event] = fn };
-  let copied, inViewCallback, observerStopped = false;
-  const preference = { matches: reduced, addEventListener: (event, fn) => preferenceEvents[event] = fn };
-  const motion = {
-    stagger: (step) => (index) => index * step,
-    animate: (elements, frames, options) => {
-      calls.push({ elements, frames, options });
-      const control = { completed: false, cancelled: false, finished: new Promise(() => {}), complete() { this.completed = true; }, cancel() { this.cancelled = true; } };
-      controls.push(control); return control;
-    },
-    inView: (selector, callback) => { inViewCallback = callback; return () => observerStopped = true; }
-  };
-  const document = {
-    documentElement: {}, activeElement: null,
-    querySelector: () => null,
-    querySelectorAll: (selector) => ({ ".hero-inner > *": hero, ".pillar.reveal": cards, "[data-year]": [year], "[data-copy]": [button] })[selector] || [],
-    getElementById: (id) => id ? { contains: (node) => node.isAnchorDestination } : null,
-    addEventListener: (event, fn) => documentEvents[event] = fn,
-  };
-  const window = { matchMedia: () => preference, WhyeungMotion: missingLibrary ? undefined : motion, location: { hash, href: "" }, scrollY: 0, addEventListener: (event, fn) => windowEvents[event] = fn };
-  vm.runInNewContext(source, { window, document, Element: { prototype: noWaapi ? {} : { animate() {} } }, getComputedStyle: () => ({ getPropertyValue: () => "cubic-bezier(0.23, 1, 0.32, 1)" }), navigator: { clipboard: { writeText: async (text) => copied = text } }, setTimeout: () => {}, Date });
-  return { window, windowEvents, documentEvents, preferenceEvents, preference, hero, cards, year, copyLabel, copyEvents, calls, controls, get copied() { return copied; }, get inViewCallback() { return inViewCallback; }, get observerStopped() { return observerStopped; } };
-}
-
-test("the requested label, pulse and old CSS entrance animations are removed", () => {
-  const html = readFileSync(join(__dirname, "../index.html"), "utf8");
-  const css = readFileSync(join(__dirname, "../site.css"), "utf8");
-  assert.doesNotMatch(html, /Independent software company|class="pill"|class="pulse"|Gould|Sheridan|82801|PostalAddress/);
-  assert.doesNotMatch(css, /@keyframes (rise|ping)|\.js \.reveal|\.hero-inner > \*/);
-  assert.ok(html.indexOf('src="./assets/vendor/motion.js"') < html.indexOf('src="./site.js"'));
-  assert.ok(existsSync(join(__dirname, "../assets/vendor/motion.js")));
+test("Motion and the rejected label are entirely removed", () => {
+  for (const name of ["index.html", "site.js", "site.css", "package.json", "package-lock.json"])
+    assert.doesNotMatch(read(name), /WhyeungMotion|"motion"|assets\/vendor\/motion|Independent software company/);
+  assert.ok(!existsSync(join(root, "assets/vendor/motion.js")));
+  assert.doesNotMatch(read("site.js"), /opacity|IntersectionObserver|\.animate\(/);
+  assert.doesNotMatch(read("index.html"), /class="[^"]*reveal|Gould|Sheridan|82801|PostalAddress/);
 });
-test("Motion animates the fresh hero with transform, opacity and a 60 ms stagger", () => {
-  const app = boot(); assert.equal(app.calls.length, 1);
-  assert.equal(app.calls[0].elements.length, 3);
-  assert.equal(app.calls[0].options.duration, 0.5);
-  assert.equal(app.calls[0].options.delay(2), 0.12);
-  assert.deepEqual(Array.from(app.calls[0].frames.opacity), [0, 1]);
-  assert.deepEqual(Array.from(app.calls[0].frames.transform), ["translateY(14px)", "translateY(0px)"]);
+test("the 3D library is pinned, bundled locally and licensed", () => {
+  const pkg = JSON.parse(read("package.json")); assert.equal(pkg.dependencies.three, "0.186.1");
+  assert.ok(existsSync(join(root, "assets/particles.js")));
+  assert.match(read("assets/three.LICENSE.txt"), /MIT License/);
+  assert.match(read("scripts/particles-entry.js"), /from "three"/);
 });
-test("scroll reveal staggers company cards without returning a replay callback", () => {
-  const app = boot(); assert.equal(app.inViewCallback(app.cards[2]), undefined);
-  assert.equal(app.calls.length, 2); assert.equal(app.calls[1].options.delay, 0.12);
+test("Three.js decorates a canvas, never moving or hiding readable content", () => {
+  const html = read("index.html"); assert.match(html, /hero-orb" aria-hidden="true"/);
+  assert.match(html, /data-particle-canvas/); assert.match(html, /data-particle-toggle/);
+  assert.match(html, /aria-label="Pause particle animation"/);
+  assert.doesNotMatch(read("scripts/particles-entry.js"), /\.style\.opacity|hero-inner|\.reveal|"h1"/);
+  assert.match(read("site.css"), /pointer-events: none/);
 });
-test("reduced motion keeps content static and core controls available", async () => {
-  const app = boot({ reduced: true }); assert.equal(app.calls.length, 0); assert.equal(app.inViewCallback, undefined);
-  await app.copyEvents.click(); assert.equal(app.copied, "contact@whyeung.com");
-  assert.equal(app.year.textContent, String(new Date().getFullYear()));
+test("the sphere is deterministic and has the expected point attributes", () => {
+  const a = createParticleData(4600), b = createParticleData(4600);
+  assert.equal(a.positions.length, 13800); assert.equal(a.sizes.length, 4600);
+  assert.deepEqual(a.positions, b.positions);
+  assert.deepEqual(a.brightness, b.brightness);
 });
-test("a failed library load still leaves company content, year and copy usable", async () => {
-  const app = boot({ missingLibrary: true }); assert.equal(app.calls.length, 0);
-  await app.copyEvents.click(); assert.equal(app.copyLabel.textContent, "Copied");
-  assert.equal(app.copied, "contact@whyeung.com");
+test("all particles are finite and lie on a spherical shell, not a flat circle", () => {
+  const { positions, sizes, brightness } = createParticleData(4600);
+  let front = 0, back = 0;
+  for (let i = 0; i < sizes.length; i++) {
+    const [x,y,z] = positions.slice(i * 3, i * 3 + 3);
+    assert.ok([x,y,z,sizes[i],brightness[i]].every(Number.isFinite));
+    assert.ok(Math.abs(Math.hypot(x,y,z)-2.6) < 0.027);
+    assert.ok(sizes[i] >= 1.5 && sizes[i] <= 3.3);
+    assert.ok(brightness[i] >= 0.55 && brightness[i] <= 1);
+    z > 0 ? front++ : back++;
+  }
+  assert.ok(front > 2000 && back > 2000);
 });
-test("a browser without WAAPI uses the same static fallback", () => {
-  const app = boot({ noWaapi: true }); assert.equal(app.calls.length, 0); assert.equal(app.inViewCallback, undefined);
+test("mobile / coarse pointers use fewer particles", () => {
+  assert.equal(choosePointCount(390, false), 2000);
+  assert.equal(choosePointCount(1440, true), 2000);
+  assert.equal(choosePointCount(1440, false), 4600);
 });
-test("turning reduced motion on finishes active animations and disconnects observers", () => {
-  const app = boot(); app.preference.matches = true; app.preferenceEvents.change({ matches: true });
-  assert.ok(app.observerStopped); assert.ok(app.controls.every((a) => a.completed && a.cancelled));
-  app.inViewCallback(app.cards[0]); assert.equal(app.calls.length, 1);
+test("the animation runs only while visible and eligible", () => {
+  const state = { visible: true, hidden: false, reduced: false, paused: false, contextLost: false };
+  assert.equal(canAnimate(state), true);
+  for (const flag of ["hidden", "reduced", "paused", "contextLost"])
+    assert.equal(canAnimate({ ...state, [flag]: true }), false);
+  assert.equal(canAnimate({ ...state, visible: false }), false);
 });
-test("keyboard focus finishes the decorative animation around the focused control", () => {
-  const app = boot(); app.documentEvents.focusin({ target: { parent: "actions" } });
-  assert.ok(app.controls[0].completed && app.controls[0].cancelled);
+test("a WebGL initialization failure leaves the static sphere and text usable", () => {
+  const bundle = buildSync({ entryPoints:[join(__dirname,"particles-entry.js")], bundle:true, format:"cjs", external:["three"], platform:"node", write:false }).outputFiles[0].text;
+  const removed = [], hero = { classList:{ remove:(name)=>removed.push(name) }, dataset:{} }, toggle = { hidden:false };
+  vm.runInNewContext(bundle, {
+    require: () => ({ WebGLRenderer: class { constructor() { throw new Error("No WebGL"); } } }),
+    document:{querySelector:(selector)=>selector==="[data-particle-hero]"?hero:selector==="[data-particle-canvas]"?{}:toggle,hidden:false},
+    matchMedia:()=>({matches:false}), innerWidth:1440,
+  });
+  assert.deepEqual(removed,["has-webgl"]);assert.equal(hero.dataset.particleState,"fallback");assert.equal(toggle.hidden,true);
+  assert.ok(existsSync(join(root,"assets/particle-sphere.svg")));
 });
-test("anchor navigation finishes active motion and skips the landing destination", () => {
-  const app = boot(); app.windowEvents.hashchange(); assert.ok(app.controls[0].cancelled);
-  app.window.location.hash = "#contact"; app.inViewCallback({ isAnchorDestination: true, contains: () => false });
-  assert.equal(app.calls.length, 1);
+test("the rotation has no flicker or brightness animation", () => {
+  const source = read("scripts/particles-entry.js");
+  assert.doesNotMatch(source,/sin\(|cos\(|uTime|Math\.random|opacity\s*=/);
+  assert.match(source,/spin \+= delta \* 0\.045/);
+  assert.match(source,/setAnimationLoop\(canAnimate\(state\)/);
 });
-test("direct anchor loads do not animate the hero", () => {
-  const app = boot({ hash: "#contact" }); assert.equal(app.calls.length, 0);
+test("WebGL resources are paused, resized and released correctly", () => {
+  const source = read("scripts/particles-entry.js");
+  for (const token of ["visibilitychange","webglcontextlost","webglcontextrestored","pagehide","ResizeObserver","geometry.dispose()","material.dispose()","renderer.dispose()"])
+    assert.ok(source.includes(token), token);
+});
+test("site interactions do not depend on Three.js being available", async () => {
+  const copyEvents={}, label={}, year={}, windowEvents={}; let copied;
+  const nav={offsetHeight:64,classList:{toggle(){}}};
+  vm.runInNewContext(read("site.js"), {
+    document:{querySelector:(selector)=>selector==="[data-nav]"?nav:null,querySelectorAll:(selector)=>selector==="[data-year]"?[year]:selector==="[data-copy]"?[{dataset:{copy:"contact@whyeung.com"},querySelector:()=>label,addEventListener:(event,fn)=>copyEvents[event]=fn}]:[]},
+    window:{scrollY:0,addEventListener:(event,fn)=>windowEvents[event]=fn,location:{}},
+    navigator:{clipboard:{writeText:async(text)=>copied=text}},Date,setTimeout(){}
+  });
+  await copyEvents.click();assert.equal(copied,"contact@whyeung.com");assert.equal(label.textContent,"Copied");
+  assert.equal(year.textContent,String(new Date().getFullYear()));
 });
