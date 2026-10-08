@@ -35,6 +35,7 @@
   --radius: 18px;
   --container: 1120px;
   --gutter: 24px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -180,7 +181,7 @@ p {
   font: 500 15px/1 var(--font);
   letter-spacing: -0.01em;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.14s var(--ease-out);
 }
 
 .btn:active {
@@ -191,8 +192,10 @@ p {
   transition: transform 0.2s;
 }
 
-.btn:hover .i {
-  transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .i {
+    transform: translateX(2px);
+  }
 }
 
 .btn-sm {
@@ -336,48 +339,9 @@ p {
   text-align: center;
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 12px;
-  border: 1px solid var(--line-2);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--ink-2);
-  font: 500 13px/1.4 var(--mono);
-  letter-spacing: 0.01em;
-}
-
-.pulse {
-  position: relative;
-  width: 7px;
-  height: 7px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.pulse::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: inherit;
-  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes ping {
-  75%,
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
-}
-
 .hero h1 {
   max-width: 13ch;
-  margin-top: 28px;
+  margin-top: 0;
   font-size: clamp(2.9rem, 8.4vw, 6rem);
   line-height: 0.98;
   letter-spacing: -0.05em;
@@ -407,29 +371,6 @@ p {
 
 .hero-inner .actions {
   justify-content: center;
-}
-
-.hero-inner > * {
-  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.hero-inner > :nth-child(2) {
-  animation-delay: 0.08s;
-}
-
-.hero-inner > :nth-child(3) {
-  animation-delay: 0.16s;
-}
-
-.hero-inner > :nth-child(4) {
-  animation-delay: 0.24s;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
 }
 
 /* Sections */
@@ -785,29 +726,6 @@ p {
   font: 500 12px/1.5 var(--mono);
 }
 
-/* Reveal on scroll (armed by JS) */
-
-.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.js .reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
-
-.pillar.reveal:nth-child(2) {
-  transition-delay: 0.08s;
-}
-
-.pillar.reveal:nth-child(3) {
-  transition-delay: 0.16s;
-}
-
 /* Documents (privacy, terms, 404) */
 
 .doc {
@@ -976,10 +894,6 @@ p {
     padding: 72px 0 72px;
   }
 
-  .hero h1 {
-    margin-top: 24px;
-  }
-
   .actions {
     margin-top: 28px;
   }
@@ -1084,8 +998,4 @@ p {
     transition: none !important;
   }
 
-  .js .reveal {
-    opacity: 1;
-    transform: none;
-  }
 }
