@@ -4,7 +4,7 @@ import {
 } from "three";
 import particleData from "./particle-data.cjs";
 
-const { createParticleData, choosePointCount, canAnimate } = particleData;
+const { createParticleData, choosePointCount, canAnimate, advancePointer, choosePixelRatio } = particleData;
 const hero = document.querySelector("[data-particle-hero]");
 const canvas = document.querySelector("[data-particle-canvas]");
 const toggle = document.querySelector("[data-particle-toggle]");
@@ -17,8 +17,8 @@ if (hero && canvas) {
   let cleanup = () => {};
 
   try {
-    renderer = new WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: "low-power" });
-    renderer.setClearColor(0x000000, 0);
+    renderer = new WebGLRenderer({ canvas, alpha: false, antialias: false, powerPreference: coarse.matches ? "low-power" : "high-performance" });
+    renderer.setClearColor(0x020203, 1);
     const scene = new Scene();
     const camera = new PerspectiveCamera(42, 1, 0.1, 30);
     camera.position.z = 7.8;
@@ -59,7 +59,8 @@ if (hero && canvas) {
     orb.rotation.x = 0.12;
     orb.rotation.z = 0.08;
     scene.add(orb);
-    let lastTime = null, lastFrame = -Infinity;
+    let lastTime = null;
+    let bounds = hero.getBoundingClientRect();
     let pointer = { x: 0, y: 0 };
     let tilt = { x: 0, y: 0 };
     let spin = 0;
@@ -72,17 +73,13 @@ if (hero && canvas) {
     };
     const render = () => renderer.render(scene, camera);
     const tick = (time) => {
-      // A calm 30fps background, independent of scroll and text opacity.
-      if (time - lastFrame < 1000 / 30) return;
+      // Use every browser animation frame; do not quantize 60/120Hz input to 30fps.
       const delta = lastTime === null ? 0 : Math.min((time - lastTime) / 1000, 0.1);
       lastTime = time;
-      lastFrame = time;
       spin += delta * 0.045;
-      const follow = 1 - Math.exp(-delta * 3);
-      tilt.x += (pointer.x - tilt.x) * follow;
-      tilt.y += (pointer.y - tilt.y) * follow;
-      orb.rotation.y = spin + tilt.x * 0.12;
-      orb.rotation.x = 0.12 + tilt.y * 0.08;
+      advancePointer(tilt, pointer, delta);
+      orb.rotation.y = spin + tilt.x * 0.22;
+      orb.rotation.x = 0.12 + tilt.y * 0.14;
       render();
     };
     const sync = () => {
@@ -94,9 +91,10 @@ if (hero && canvas) {
     };
     const resize = () => {
       const width = hero.clientWidth, height = hero.clientHeight;
-      const pixelRatio = Math.min(devicePixelRatio || 1, coarse.matches ? 1.25 : 1.5);
-      renderer.setPixelRatio(pixelRatio);
-      renderer.setSize(width, height, false);
+      bounds = hero.getBoundingClientRect();
+      const pixelRatio = choosePixelRatio(width, height, devicePixelRatio, coarse.matches);
+      // Resize the backing buffer once, rather than reallocating it twice.
+      renderer.setDrawingBufferSize(width, height, pixelRatio);
       camera.aspect = width / height;
       // The sphere fills the hero without clipping its edges on narrow screens.
       camera.position.z = camera.aspect < 1 ? 7.8 / camera.aspect : 7.8;
@@ -109,11 +107,14 @@ if (hero && canvas) {
     const onToggle = () => { state.paused = !state.paused; sync(); };
     const onPointer = (event) => {
       if (coarse.matches || state.reduced || state.paused || event.pointerType === "touch") return;
-      const rect = hero.getBoundingClientRect();
-      pointer.x = (event.clientX - rect.left) / rect.width * 2 - 1;
-      pointer.y = (event.clientY - rect.top) / rect.height * 2 - 1;
+      const samples = event.getCoalescedEvents?.();
+      const sample = samples?.length ? samples[samples.length - 1] : event;
+      // Cache geometry outside pointermove; avoid a forced layout on every input.
+      pointer.x = Math.max(-1, Math.min(1, (sample.clientX - bounds.left) / bounds.width * 2 - 1));
+      pointer.y = Math.max(-1, Math.min(1, (sample.clientY - bounds.top) / bounds.height * 2 - 1));
     };
     const onLeave = () => { pointer = { x: 0, y: 0 }; };
+    const onGeometryChange = () => { bounds = hero.getBoundingClientRect(); };
     const onLost = (event) => {
       event.preventDefault();
       state.contextLost = true;
@@ -138,6 +139,8 @@ if (hero && canvas) {
     toggle?.addEventListener("click", onToggle);
     hero.addEventListener("pointermove", onPointer, { passive: true });
     hero.addEventListener("pointerleave", onLeave);
+    hero.addEventListener("pointerenter", onGeometryChange, { passive: true });
+    window.addEventListener("scroll", onGeometryChange, { passive: true });
     canvas.addEventListener("webglcontextlost", onLost);
     canvas.addEventListener("webglcontextrestored", onRestored);
     window.addEventListener("pagehide", onPageHide);
@@ -150,6 +153,8 @@ if (hero && canvas) {
       toggle?.removeEventListener("click", onToggle);
       hero.removeEventListener("pointermove", onPointer);
       hero.removeEventListener("pointerleave", onLeave);
+      hero.removeEventListener("pointerenter", onGeometryChange);
+      window.removeEventListener("scroll", onGeometryChange);
       canvas.removeEventListener("webglcontextlost", onLost);
       canvas.removeEventListener("webglcontextrestored", onRestored);
       window.removeEventListener("pagehide", onPageHide);

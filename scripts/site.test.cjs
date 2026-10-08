@@ -4,7 +4,7 @@ const vm = require("node:vm");
 const { readFileSync, existsSync } = require("node:fs");
 const { join } = require("node:path");
 const { buildSync } = require("esbuild");
-const { createParticleData, choosePointCount, canAnimate } = require("./particle-data.cjs");
+const { createParticleData, choosePointCount, canAnimate, advancePointer, choosePixelRatio } = require("./particle-data.cjs");
 const root = join(__dirname, "..");
 const read = (name) => readFileSync(join(root, name), "utf8");
 
@@ -91,4 +91,39 @@ test("site interactions do not depend on Three.js being available", async () => 
   });
   await copyEvents.click();assert.equal(copied,"contact@whyeung.com");assert.equal(label.textContent,"Copied");
   assert.equal(year.textContent,String(new Date().getFullYear()));
+});
+
+
+test("cursor response reaches 90% in under 70ms at 60Hz", () => {
+  const tilt = { x: 0, y: 0 }, pointer = { x: 1, y: -1 };
+  for (let frame=0; frame<4; frame++) advancePointer(tilt, pointer, 1/60);
+  assert.ok(tilt.x > 0.9 && tilt.x <= 1);
+  assert.ok(tilt.y < -0.9 && tilt.y >= -1);
+});
+test("cursor damping is stable across 60Hz and 120Hz displays", () => {
+  const a={x:0,y:0},b={x:0,y:0},target={x:1,y:-1};
+  for(let i=0;i<12;i++)advancePointer(a,target,1/60);
+  for(let i=0;i<24;i++)advancePointer(b,target,1/120);
+  assert.ok(Math.abs(a.x-b.x)<1e-10);
+  assert.ok(Math.abs(a.y-b.y)<1e-10);
+});
+test("rapid pointer direction reversal has no extra wait or overshoot", () => {
+  const tilt={x:1,y:1};advancePointer(tilt,{x:-1,y:-1},1/60);
+  assert.ok(tilt.x<0.2 && tilt.x>-1);
+  advancePointer(tilt,{x:1,y:1},0);assert.ok(tilt.x<0.2);
+});
+test("the loop no longer skips frames or measures layout during pointermove", () => {
+  const source=read("scripts/particles-entry.js");
+  assert.doesNotMatch(source,/lastFrame|1000\s*\/\s*30/);
+  const handler=source.slice(source.indexOf("const onPointer ="),source.indexOf("const onLeave ="));
+  assert.doesNotMatch(handler,/getBoundingClientRect/);
+  assert.match(handler,/getCoalescedEvents/);
+  assert.match(source,/setDrawingBufferSize/);
+});
+test("pixel density is bounded on Retina, ultrawide and mobile screens", () => {
+  for(const [width,height,coarse] of [[1463,797,false],[3840,2160,false],[390,680,true]]){
+    const ratio=choosePixelRatio(width,height,3,coarse);
+    assert.ok(ratio>0&&ratio<=1.25);
+    assert.ok(width*height*ratio*ratio<=(coarse?900000:1800000)+1e-6);
+  }
 });

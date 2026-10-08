@@ -31,3 +31,20 @@ function canAnimate({ visible, hidden, reduced, paused, contextLost }) {
 }
 
 module.exports = { createParticleData, choosePointCount, canAnimate };
+
+// Frame-rate independent cursor damping: 90% of a move is reached in ~64ms.
+function advancePointer(tilt, pointer, deltaSeconds) {
+  const blend = 1 - Math.exp(-Math.max(0, deltaSeconds) * 36);
+  tilt.x += (pointer.x - tilt.x) * blend;
+  tilt.y += (pointer.y - tilt.y) * blend;
+  return tilt;
+}
+
+function choosePixelRatio(width, height, ratio, coarsePointer) {
+  const limit = coarsePointer ? 1 : 1.25;
+  const pixelBudget = coarsePointer ? 900000 : 1800000;
+  return Math.min(ratio || 1, limit, Math.sqrt(pixelBudget / Math.max(1, width * height)));
+}
+
+module.exports.advancePointer = advancePointer;
+module.exports.choosePixelRatio = choosePixelRatio;
