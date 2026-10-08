@@ -4,7 +4,7 @@
 
   // Reveal on scroll. Anything already on screen is marked visible before the
   // hidden state is armed, so there is no flash on load.
-  const targets = [...document.querySelectorAll(".reveal, [data-animate]")];
+  const targets = [...document.querySelectorAll(".reveal")];
 
   if ("IntersectionObserver" in window && !reduceMotion) {
     targets.forEach((node) => {
